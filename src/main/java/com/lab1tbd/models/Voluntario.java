@@ -17,7 +17,6 @@ public class Voluntario {
     private String contrasena;
     private String telefono;
     private String direccion;
-    private LocalDateTime fechaRegistro;
 
 }
 
