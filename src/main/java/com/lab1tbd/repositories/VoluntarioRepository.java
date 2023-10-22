@@ -35,4 +35,22 @@ public class VoluntarioRepository  extends Repository<Voluntario>{
                     .executeAndFetchFirst(Voluntario.class);
         }
     }
+
+    public Voluntario findVoluntarioById(Long id) {
+        try (Connection connection = sql2o.open()) {
+            return connection.createQuery("SELECT * FROM voluntario WHERE id = :id")
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(Voluntario.class);
+        }
+    }
+
+    public void deleteVoluntarioById(Long id) {
+        try (Connection connection = sql2o.open()) {
+            connection.createQuery("DELETE FROM voluntario WHERE id = :id")
+                    .addParameter("id", id)
+                    .executeUpdate();
+        }
+    }
+
+
 }
