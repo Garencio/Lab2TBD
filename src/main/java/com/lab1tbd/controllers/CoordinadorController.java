@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/coordinador")
-@Controller
 public class CoordinadorController {
 
     private static final Logger logger = LoggerFactory.getLogger(CoordinadorController.class);
@@ -52,5 +50,7 @@ public class CoordinadorController {
         String token = jwtService.generateTokenForCoordinador(coor);
         return ResponseEntity.ok(token);
     }
+
+
 
 }
