@@ -1,4 +1,13 @@
 CREATE EXTENSION postgis;
+CREATE TABLE coordinador_log (
+    id SERIAL PRIMARY KEY,
+    coordinador_id BIGINT,
+    action VARCHAR(255),
+    table_name VARCHAR(255),
+    record_id BIGINT,
+    timestamp TIMESTAMP DEFAULT NOW()
+);
+
 -- Tabla Institucion
 CREATE TABLE institucion (
     id SERIAL PRIMARY KEY,
@@ -17,6 +26,7 @@ CREATE TABLE emergencia (
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
     descripcion TEXT,
+    estado VARCHAR(255),
     fecha_inicio TIMESTAMP,
     ubicacion geometry(Point, 4326),
     institucion_id INTEGER REFERENCES institucion(id)
