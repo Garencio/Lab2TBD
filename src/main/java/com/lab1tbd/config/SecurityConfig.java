@@ -20,7 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/voluntario/register", "/api/voluntario/login").permitAll() // Permitiendo el acceso a estas rutas.
+                .antMatchers("/api/voluntario/register", "/api/voluntario/login", "/api/coordinador/register", "/api/coordinador/login").permitAll()
                 .anyRequest().authenticated();
     }
 }
