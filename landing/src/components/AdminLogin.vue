@@ -1,10 +1,10 @@
 <template>
-  <router-link to="/user-main">
+  <router-link to="/">
     <button class="back-button">Volver</button>
   </router-link>
   <div class="main-container">
     <div class="login-container">
-      <h2>Login Voluntariado</h2>
+      <h2>Login Administrador</h2>
       <form @submit.prevent="handleLogin" class="form-container">
         <div class="form-group-info">
           <InputField label="Username:" inputId="username" v-model="username" />

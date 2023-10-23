@@ -1,30 +1,48 @@
 <template>
-  <div class="login-buttons">
-    <button class="login-button" @click="login">Iniciar Sesión</button>
-    <button class="register-button" @click="register">Registrarse</button>
+  <div class="login-page">
+    <h2>IDENTIFICARSE</h2>
+    <div class="login-container">
+      <div class="login-buttons">
+        <router-link to="/admin-login">
+          <button class="login-button">Administrador</button>
+        </router-link>
+        <router-link to="/user-main">
+          <button class="register-button">Voluntariado</button>
+        </router-link>
+      </div>
+    </div>
   </div>
 </template>
 
+
 <script>
 export default {
-  methods: {
-    login() {
-      // Lógica para iniciar sesión
-      alert("Iniciar Sesión");
-    },
-    register() {
-      // Lógica para registrarse
-      alert("Registrarse");
-    },
-  },
+  // ...
 };
 </script>
 
 <style scoped>
-.login-buttons {
+
+
+.login-container {
+  background-color: #24075b;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 10px;
+}
+h2{
+  font-family: 'Roboto Mono', monospace; /* Aplicar la fuente Roboto Mono */
+  text-align: center;
+  color: white;
+  padding: 10px;
+}
+
+.login-buttons {
+  text-align: center;
+  border: 2px solid rgb(0, 0, 0); /* Color del borde del rectángulo */
+  padding: 20px; /* Espacio dentro del rectángulo */
+  border-radius: 10px; /* Borde redondeado del rectángulo */
 }
 
 .login-button,
@@ -36,20 +54,22 @@ export default {
   border-radius: 5px;
   margin: 10px;
   transition: background-color 0.3s, color 0.3s;
+  font-family: 'Roboto Mono', monospace; /* Aplicar la fuente Roboto Mono */
 }
 
 .login-button {
-  background-color: #007BFF;
+  background-color: #5f2ab6; /* Color morado */
   color: #fff;
 }
 
 .register-button {
-  background-color: #34C759;
+  background-color: #5f2ab6; /* Color azul */
   color: #fff;
 }
 
 .login-button:hover,
 .register-button:hover {
-  background-color: #0056b3;
+  background-color: #1c2fb7; /* Color amarillo */
+  color: #fff;
 }
 </style>
