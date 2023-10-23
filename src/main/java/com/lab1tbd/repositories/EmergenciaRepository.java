@@ -4,6 +4,8 @@ import com.lab1tbd.models.Emergencia;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
+import java.util.List;
+
 @org.springframework.stereotype.Repository
 public class EmergenciaRepository extends Repository<Emergencia> {
 
@@ -41,6 +43,13 @@ public class EmergenciaRepository extends Repository<Emergencia> {
             connection.createQuery("DELETE FROM emergencia WHERE id = :id")
                     .addParameter("id", id)
                     .executeUpdate();
+        }
+    }
+
+    public List<Emergencia> findAll() {
+        try (Connection connection = sql2o.open()) {
+            return connection.createQuery("SELECT * FROM emergencia")
+                    .executeAndFetch(Emergencia.class);
         }
     }
 

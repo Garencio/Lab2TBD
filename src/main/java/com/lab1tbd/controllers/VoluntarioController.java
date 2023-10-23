@@ -1,8 +1,9 @@
 package com.lab1tbd.controllers;
 
+import com.lab1tbd.models.Emergencia;
+import com.lab1tbd.models.Tarea;
 import com.lab1tbd.models.Voluntario;
-import com.lab1tbd.services.JwtService;
-import com.lab1tbd.services.VoluntarioService;
+import com.lab1tbd.services.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.security.Principal;
-import java.time.LocalDateTime;
+
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -33,6 +37,15 @@ public class VoluntarioController {
 
     @Autowired
     VoluntarioService voluntarioService;
+
+    @Autowired
+    private EmergenciaService emergenciaService;
+
+    @Autowired
+    private TareaService tareaService;
+
+    @Autowired
+    private RankingService rankingService;
 
     @GetMapping("/home")
     public String homePage(Model model, Principal principal) {
@@ -69,4 +82,30 @@ public class VoluntarioController {
         return ResponseEntity.ok(token);
     }
 
+    @GetMapping("/listado-emergencias-y-tareas")
+    public Map<String, Object> listadoEmergenciasYTareas() {
+        List<Emergencia> emergencias = emergenciaService.getAllEmergencias();
+
+        Map<Emergencia, List<Tarea>> emergenciaTareas = new HashMap<>();
+        Map<Tarea, Integer> tareaVoluntarios = new HashMap<>();
+
+        for (Emergencia emergencia : emergencias) {
+            List<Tarea> tareas = tareaService.getTareasByEmergenciaId(emergencia.getId());
+            emergenciaTareas.put(emergencia, tareas);
+
+            for (Tarea tarea : tareas) {
+                int cantidadVoluntarios = rankingService.getCantidadVoluntariosPorTarea(tarea.getId());
+                tareaVoluntarios.put(tarea, cantidadVoluntarios);
+            }
+        }
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("emergenciaTareas", emergenciaTareas);
+        result.put("tareaVoluntarios", tareaVoluntarios);
+
+        return result;
+    }
 }
+
+
+

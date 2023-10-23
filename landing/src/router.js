@@ -3,8 +3,11 @@ import Home from '@/components/Home.vue';
 import AdminLogin from '@/components/AdminLogin.vue';
 import UserMain from '@/components/UserMain.vue';
 import UserLogin from '@/components/UserLogin.vue';
+
 import UserRegister from '@/components/UserRegistration.vue';
 
+
+import TareasConMenosVoluntarios from '@/components/TareasConMenosVoluntarios.vue';
 
 
 const routes = [
@@ -32,6 +35,11 @@ const routes = [
         path: '/user-register',
         name: 'UserRegister',
         component: UserRegister,
+    },
+    {
+        path: '/tareas-con-menos-voluntarios', // Nueva ruta para la lista de tareas con menos voluntarios
+        name: 'TareasConMenosVoluntarios',
+        component: TareasConMenosVoluntarios, // Asigna el componente correspondiente
     },
 ];
 
