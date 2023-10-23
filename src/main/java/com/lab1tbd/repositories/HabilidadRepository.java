@@ -27,4 +27,22 @@ public class HabilidadRepository extends  Repository<Habilidad> {
                     .executeUpdate();
         }
     }
+
+    public Habilidad findHabilidadById(Long id) {
+        try (Connection connection = sql2o.open()) {
+            return connection.createQuery("SELECT * FROM habilidad WHERE id = :id")
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(Habilidad.class);
+        }
+    }
+
+    public void deleteHabilidadById(Long id) {
+        try (Connection connection = sql2o.open()) {
+            connection.createQuery("DELETE FROM habilidad WHERE id = :id")
+                    .addParameter("id", id)
+                    .executeUpdate();
+        }
+    }
+
+
 }

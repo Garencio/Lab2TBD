@@ -27,4 +27,22 @@ public class TareaRepository extends Repository<Tarea> {
                     .executeUpdate();
         }
     }
+
+    public Tarea findTareaById(Long id) {
+        try (Connection connection = sql2o.open()) {
+            return connection.createQuery("SELECT * FROM tarea WHERE id = :id")
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(Tarea.class);
+        }
+    }
+
+    public void deleteTareaById(Long id) {
+        try (Connection connection = sql2o.open()) {
+            connection.createQuery("DELETE FROM tarea WHERE id = :id")
+                    .addParameter("id", id)
+                    .executeUpdate();
+        }
+    }
+
+
 }

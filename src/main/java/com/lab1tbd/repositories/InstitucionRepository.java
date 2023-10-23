@@ -27,5 +27,23 @@ public class InstitucionRepository extends Repository<Institucion> {
                     .executeUpdate();
         }
     }
+
+    public Institucion findInstitucionById(Long id) {
+        try (Connection connection = sql2o.open()) {
+            return connection.createQuery("SELECT * FROM institucion WHERE id = :id")
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(Institucion.class);
+        }
+    }
+
+    public void deleteInstitucionById(Long id) {
+        try (Connection connection = sql2o.open()) {
+            connection.createQuery("DELETE FROM institucion WHERE id = :id")
+                    .addParameter("id", id)
+                    .executeUpdate();
+        }
+    }
+
+
 }
 

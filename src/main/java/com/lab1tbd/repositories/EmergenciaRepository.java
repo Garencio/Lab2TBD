@@ -27,5 +27,23 @@ public class EmergenciaRepository extends Repository<Emergencia> {
                     .executeUpdate();
         }
     }
+
+    public Emergencia findEmergenciaById(Long id) {
+        try (Connection connection = sql2o.open()) {
+            return connection.createQuery("SELECT * FROM emergencia WHERE id = :id")
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(Emergencia.class);
+        }
+    }
+
+    public void deleteEmergenciaById(Long id) {
+        try (Connection connection = sql2o.open()) {
+            connection.createQuery("DELETE FROM emergencia WHERE id = :id")
+                    .addParameter("id", id)
+                    .executeUpdate();
+        }
+    }
+
+
 }
 
