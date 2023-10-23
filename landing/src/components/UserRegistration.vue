@@ -7,16 +7,28 @@
       <h2>Registro Voluntariado</h2>
       <form @submit.prevent="handleRegister" class="register-form">
         <div class="form-group">
-          <label for="username">Username:</label>
-          <InputField inputId="username" v-model="username" />
+          <label for="nombre">Nombre:</label>
+          <InputField inputId="nombre" v-model="nombre" />
         </div>
         <div class="form-group">
-          <label for="password">Password:</label>
-          <InputField inputId="password" type="password" v-model="password" />
+          <label for="email">Email:</label>
+          <InputField inputId="email" type="email" v-model="email" />
         </div>
         <div class="form-group">
-          <label for="passwordConfirm">Confirm Password:</label>
+          <label for="contrasena">Contraseña:</label>
+          <InputField inputId="contrasena" type="password" v-model="contrasena" />
+        </div>
+        <div class="form-group">
+          <label for="passwordConfirm">Confirmar Contraseña:</label>
           <InputField inputId="passwordConfirm" type="password" v-model="passwordConfirm" />
+        </div>
+        <div class="form-group">
+          <label for="telefono">Teléfono:</label>
+          <InputField inputId="telefono" v-model="telefono" />
+        </div>
+        <div class="form-group">
+          <label for="direccion">Dirección:</label>
+          <InputField inputId="direccion" v-model="direccion" />
         </div>
         <div class="form-group-button">
           <PrimaryButton>Registrar</PrimaryButton>
@@ -40,41 +52,50 @@ export default {
   },
   data() {
     return {
-      username: '',
-      password: '',
-      passwordConfirm: ''
+      nombre: '',
+      email: '',
+      contrasena: '',
+      passwordConfirm: '',
+      telefono: '',
+      direccion: ''
     };
   },
   methods: {
     async handleRegister() {
-      if (!this.username || !this.password) {
-        alert("Username and password are required!");
+
+      if (!this.nombre || !this.email || !this.contrasena || !this.telefono || !this.direccion) {
+        alert("Todos los campos son obligatorios");
         return;
       }
 
-      if (this.password.length < 8) {
-        alert("Password should be at least 8 characters long!");
+      if (this.contrasena.length < 8) {
+        alert("La contraseña debe tener al menos 8 caracteres");
         return;
       }
 
-      if (this.password !== this.passwordConfirm) {
-        alert("Passwords do not match!");
+      if (this.contrasena !== this.passwordConfirm) {
+        alert("Las contraseñas no coinciden");
         return;
       }
+
+      const voluntarioData = {
+        nombre: this.nombre,
+        email: this.email,
+        contrasena: this.contrasena,
+        telefono: this.telefono,
+        direccion: this.direccion
+      };
 
       try {
-        const response = await api.post('http://localhost:8080/api/register', {
-          nickname: this.username,
-          contrasena: this.password
-        });
+        const response = await api.post('http://localhost:8086/api/voluntario/register', voluntarioData);
 
         const newUser = response.data;
-        alert("Registered successfully with ID: " + newUser.id);
+        alert("Registrado exitosamente con ID: " + newUser.id);
       } catch (error) {
         const errorMessage = error.response && error.response.data && error.response.data.message
             ? error.response.data.message
-            : "An unknown error occurred.";
-        alert("Error registering: " + errorMessage);
+            : "Ha ocurrido un error desconocido.";
+        alert("Error al registrar: " + errorMessage);
       }
     }
   }
@@ -89,26 +110,26 @@ export default {
   align-items: center;
   height: 50vh;
   width: 50vw;
-  background-color: #300870; /* Color de fondo morado oscuro */
+  background-color: #300870;
 }
 .form-group-button{
   padding: 20px;
 }
 
 .back-button {
-  background-color: #1e044b; /* Morado más claro */
+  background-color: #1e044b;
   color: #fff;
   border: none;
   border-radius: 4px;
   font-size: 1rem;
-  padding: 10px 451px; /* Ajusta el espaciado del botón */
+  padding: 10px 451px;
   cursor: pointer;
   transition: background-color 0.3s;
-  font-family: 'Roboto Mono', monospace; /* Aplicar la fuente Roboto Mono */
+  font-family: 'Roboto Mono', monospace;
 }
 
 .back-button:hover {
-  background-color: #a99f17; /* Color de fondo más oscuro al pasar el cursor */
+  background-color: #a99f17;
 }
 
 .register-container {
@@ -119,19 +140,19 @@ export default {
   height: 400px;
   margin: 0 auto;
   padding: 20px;
-  border: 5px solid #3810ab; /* Borde morado */
+  border: 5px solid #3810ab;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #220864; /* Color de fondo morado oscuro */
-  color: #fff; /* Color del texto */
+  background-color: #220864;
+  color: #fff;
   font-family: 'Roboto Mono', monospace;
 }
 
 h2 {
   margin-bottom: 1rem;
   text-align: center;
-  margin-top: 25px; /* Agrega margen superior de 20px */
-  font-size: 1.5rem; /* Tamaño del título */
+  margin-top: 25px;
+  font-size: 1.5rem;
 }
 
 form {
@@ -148,7 +169,7 @@ form {
 label {
   display: block;
   font-weight: 500;
-  color: #ffffff; /* Morado oscuro */
+  color: #ffffff;
   margin-bottom: 0.3rem;
   text-align: left;
   padding: 1px;
@@ -165,11 +186,11 @@ input {
 }
 
 input:focus {
-  border-color: #7642d9; /* Morado más claro al enfocar */
+  border-color: #7642d9;
 }
 
 PrimaryButton {
-  background-color: #7642d9; /* Morado más claro */
+  background-color: #7642d9;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -180,7 +201,7 @@ PrimaryButton {
 }
 
 PrimaryButton:hover {
-  background-color: #5c359c; /* Color de fondo más oscuro al pasar el cursor */
+  background-color: #5c359c;
 }
 
 </style>

@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.util.Map;
 
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api/voluntario")
 @Controller
@@ -34,10 +36,8 @@ public class VoluntarioController {
 
     @GetMapping("/home")
     public String homePage(Model model, Principal principal) {
-        // Obtiene el nombre de usuario del voluntario autenticado
         String username = principal.getName();
         Voluntario voluntario = voluntarioService.findVoluntarioByEmail(username);
-        // Elimina la contraseña antes de enviar los datos a la vista
         voluntario.setContrasena(null);
         model.addAttribute("voluntario", voluntario);
         return "voluntario_home";
@@ -49,7 +49,6 @@ public class VoluntarioController {
             return ResponseEntity.badRequest().body(null);
         } else {
             voluntario.setContrasena(bCryptPasswordEncoder.encode(voluntario.getContrasena()));
-            voluntario.setFechaRegistro(LocalDateTime.now());
             Long id = voluntarioService.saveVoluntario(voluntario);
             voluntario.setId(id);
             return ResponseEntity.ok(voluntario);
@@ -57,12 +56,16 @@ public class VoluntarioController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> loginVoluntario(@RequestBody Voluntario voluntario) {
-        Voluntario Vol = voluntarioService.findVoluntarioByEmail(voluntario.getEmail());
-        if (Vol == null || !bCryptPasswordEncoder.matches(voluntario.getContrasena(), Vol.getContrasena())) {
+    public ResponseEntity<?> loginVoluntario(@RequestBody Map<String, String> credentials) {
+        String email = credentials.get("email");
+        String password = credentials.get("contrasena");
+
+        Voluntario voluntario = voluntarioService.findVoluntarioByEmail(email);
+        if (voluntario == null || !bCryptPasswordEncoder.matches(password, voluntario.getContrasena())) {
             return ResponseEntity.status(401).body("Credenciales incorrectas");
         }
-        String token = jwtService.generateTokenForVoluntario(Vol);
+
+        String token = jwtService.generateTokenForVoluntario(voluntario);
         return ResponseEntity.ok(token);
     }
 

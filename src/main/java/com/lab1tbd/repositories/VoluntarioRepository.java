@@ -13,12 +13,14 @@ public class VoluntarioRepository  extends Repository<Voluntario>{
 
     public Long createVoluntario(Voluntario voluntario) {
         try (Connection connection = sql2o.open()) {
-            return (Long) connection.createQuery("INSERT INTO voluntario(nombre, email, contrasena, telefono, direccion, fechaRegistro) VALUES (:nombre, :email, :contrasena, :telefono, :direccion, :fechaRegistro)", true)
+            Number key = (Number) connection.createQuery("INSERT INTO voluntario(nombre, email, contrasena, telefono, direccion) VALUES (:nombre, :email, :contrasena, :telefono, :direccion)", true)
                     .bind(voluntario)
                     .executeUpdate()
                     .getKey();
+            return (key != null ? key.longValue() : null);
         }
     }
+
 
     public void updateVoluntario(Voluntario voluntario) {
         try (Connection connection = sql2o.open()) {
@@ -30,11 +32,28 @@ public class VoluntarioRepository  extends Repository<Voluntario>{
 
     public Voluntario findVoluntarioByEmail(String email) {
         try (Connection connection = sql2o.open()) {
-            return connection.createQuery("SELECT * FROM voluntario WHERE email = :email")
+            Voluntario voluntario = connection.createQuery("SELECT * FROM voluntario WHERE email = :email")
                     .addParameter("email", email)
                     .executeAndFetchFirst(Voluntario.class);
+
+
+
+            if (voluntario != null) {
+                System.out.println("Voluntario encontrado: " + voluntario);
+            } else {
+                System.out.println("No se encontró el voluntario con el correo: " + email);
+            }
+
+            return voluntario;
+        } catch (Exception e) {
+            System.out.println("Error al buscar el voluntario: " + e.getMessage());
+            return null;
         }
     }
+
+
+
+
 
     public Voluntario findVoluntarioById(Long id) {
         try (Connection connection = sql2o.open()) {

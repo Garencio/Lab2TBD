@@ -7,10 +7,10 @@
       <h2>Login Voluntariado</h2>
       <form @submit.prevent="handleLogin" class="form-container">
         <div class="form-group-info">
-          <InputField label="Username:" inputId="username" v-model="username" />
+          <InputField label="Correo Electrónico:" inputId="email" v-model="email" />
         </div>
         <div class="form-group-info">
-          <InputField label="Password:" inputId="password" type="password" v-model="password" />
+          <InputField label="Contraseña:" inputId="password" type="password" v-model="password" />
         </div>
         <div class="form-group-login">
           <PrimaryButton>Login</PrimaryButton>
@@ -33,15 +33,15 @@ export default {
   },
   data() {
     return {
-      username: '',
+      email: '',
       password: ''
     };
   },
   methods: {
     async handleLogin() {
       try {
-        const response = await axios.post('http://localhost:8080/api/login', {
-          nickname: this.username,
+        const response = await axios.post('http://localhost:8086/api/voluntario/login', {
+          email: this.email,
           contrasena: this.password
         });
 

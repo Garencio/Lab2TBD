@@ -1,6 +1,6 @@
 CREATE EXTENSION postgis;
 CREATE TABLE coordinador_log (
-    id SERIAL PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     coordinador_id BIGINT,
     action VARCHAR(255),
     table_name VARCHAR(255),
@@ -10,20 +10,20 @@ CREATE TABLE coordinador_log (
 
 -- Tabla Institucion
 CREATE TABLE institucion (
-    id SERIAL PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
     direccion VARCHAR(255),
     contacto VARCHAR(255)
 );
 -- Tabla EstadoTarea
 CREATE TABLE estado_tarea (
-    id SERIAL PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
     descripcion TEXT
 );
 -- Tabla Emergencia
 CREATE TABLE emergencia (
-    id SERIAL PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
     descripcion TEXT,
     estado VARCHAR(255),
@@ -33,7 +33,7 @@ CREATE TABLE emergencia (
 );
 -- Tabla Tarea
 CREATE TABLE tarea (
-    id SERIAL PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
     descripcion TEXT,
     fecha_asignacion TIMESTAMP,
@@ -43,52 +43,50 @@ CREATE TABLE tarea (
 );
 -- Tabla Coordinador
 CREATE TABLE coordinador (
-    id SERIAL PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     contrasena VARCHAR(255) NOT NULL,
     telefono VARCHAR(50),
     direccion VARCHAR(255),
-    fecha_registro TIMESTAMP
 );
 -- Tabla Habilidad
 CREATE TABLE habilidad (
-    id SERIAL PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
     descripcion TEXT
 );
 -- Tabla EmeHabilidad
 CREATE TABLE eme_habilidad (
-    id SERIAL PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     emergencia_id INTEGER REFERENCES emergencia(id),
     habilidad_id INTEGER REFERENCES habilidad(id)
 );
 -- Tabla Voluntario
 CREATE TABLE voluntario (
-    id SERIAL PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     contrasena VARCHAR(255) NOT NULL,
     telefono VARCHAR(50),
     direccion VARCHAR(255),
-    fecha_registro TIMESTAMP
 );
 -- Tabla Ranking
 CREATE TABLE ranking (
-    id SERIAL PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     voluntario_id INTEGER REFERENCES voluntario(id),
     tarea_id INTEGER REFERENCES tarea(id),
     puntuacion INTEGER
 );
 -- Tabla TareaHabilidad
 CREATE TABLE tarea_habilidad (
-    id SERIAL PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     tarea_id INTEGER REFERENCES tarea(id),
     eme_habilidad_id INTEGER REFERENCES eme_habilidad(id)
 );
 -- Tabla VolHabilidad
 CREATE TABLE vol_habilidad (
-    id SERIAL PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     voluntario_id INTEGER REFERENCES voluntario(id),
     habilidad_id INTEGER REFERENCES habilidad(id)
 );

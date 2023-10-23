@@ -33,10 +33,10 @@ public class CoordinadorController {
 
     @GetMapping("/home")
     public String homePage(Model model, Principal principal) {
-        // Obtiene el nombre de usuario del coordinador autenticado
+
         String username = principal.getName();
         Coordinador coordinador = coordinadorService.findCoordinadorByEmail(username);
-        // Elimina la contraseña antes de enviar los datos a la vista
+
         coordinador.setContrasena(null);
         model.addAttribute("coordinador", coordinador);
         return "home";
