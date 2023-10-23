@@ -37,7 +37,6 @@ BEGIN
 RETURN NEW;
 ELSIF (TG_OP = 'UPDATE') THEN
         IF (OLD.estado_tarea_id != NEW.estado_tarea_id) THEN
-            -- Suponiendo que 2 es el ID para "Iniciada" y 3 para "Finalizada" en estado_tarea
             IF (NEW.estado_tarea_id = 2) THEN
                 INSERT INTO coordinador_log(coordinador_id, action, table_name, record_id, timestamp)
                 VALUES (NEW.coordinador_id, 'iniciar', 'tarea', NEW.id, now());
