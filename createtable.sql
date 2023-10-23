@@ -29,7 +29,8 @@ CREATE TABLE emergencia (
     estado VARCHAR(255),
     fecha_inicio TIMESTAMP,
     ubicacion geometry(Point, 4326),
-    institucion_id INTEGER REFERENCES institucion(id)
+    institucion_id INTEGER REFERENCES institucion(id),
+    coordinador_id BIGINT REFERENCES coordinador(id)
 );
 -- Tabla Tarea
 CREATE TABLE tarea (
@@ -39,7 +40,8 @@ CREATE TABLE tarea (
     fecha_asignacion TIMESTAMP,
     ubicacion geometry(Point, 4326),
     estado_tarea_id INTEGER REFERENCES estado_tarea(id),
-    emergencia_id INTEGER REFERENCES emergencia(id)
+    emergencia_id INTEGER REFERENCES emergencia(id),
+    coordinador_id BIGINT REFERENCES coordinador(id)
 );
 -- Tabla Coordinador
 CREATE TABLE coordinador (

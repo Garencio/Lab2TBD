@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  // ...
+
 };
 </script>
 
@@ -32,7 +32,7 @@ export default {
   border-radius: 10px;
 }
 h2{
-  font-family: 'Roboto Mono', monospace; /* Aplicar la fuente Roboto Mono */
+  font-family: 'Roboto Mono', monospace;
   text-align: center;
   color: white;
   padding: 10px;
@@ -40,9 +40,9 @@ h2{
 
 .login-buttons {
   text-align: center;
-  border: 2px solid rgb(0, 0, 0); /* Color del borde del rectángulo */
-  padding: 20px; /* Espacio dentro del rectángulo */
-  border-radius: 10px; /* Borde redondeado del rectángulo */
+  border: 2px solid rgb(0, 0, 0);
+  padding: 20px;
+  border-radius: 10px;
 }
 
 .login-button,
@@ -54,22 +54,22 @@ h2{
   border-radius: 5px;
   margin: 10px;
   transition: background-color 0.3s, color 0.3s;
-  font-family: 'Roboto Mono', monospace; /* Aplicar la fuente Roboto Mono */
+  font-family: 'Roboto Mono', monospace;
 }
 
 .login-button {
-  background-color: #5f2ab6; /* Color morado */
+  background-color: #5f2ab6;
   color: #fff;
 }
 
 .register-button {
-  background-color: #5f2ab6; /* Color azul */
+  background-color: #5f2ab6;
   color: #fff;
 }
 
 .login-button:hover,
 .register-button:hover {
-  background-color: #1c2fb7; /* Color amarillo */
+  background-color: #1c2fb7;
   color: #fff;
 }
 </style>

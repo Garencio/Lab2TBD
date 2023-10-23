@@ -15,7 +15,7 @@ public class EmergenciaRepository extends Repository<Emergencia> {
 
     public Long createEmergencia(Emergencia emergencia) {
         try (Connection conn = sql2o.open()) {
-            return (Long) conn.createQuery("INSERT INTO emergencia(nombre, descripcion, fecha, ubicacion) VALUES (:nombre, :descripcion, :fecha, :ubicacion)", true)
+            return (Long) conn.createQuery("INSERT INTO emergencia(nombre, descripcion, fecha_inicio, ubicacion) VALUES (:nombre, :descripcion, :fecha, :ubicacion)", true)
                     .bind(emergencia)
                     .executeUpdate()
                     .getKey();
@@ -24,7 +24,7 @@ public class EmergenciaRepository extends Repository<Emergencia> {
 
     public void updateEmergencia(Emergencia emergencia) {
         try (Connection conn = sql2o.open()) {
-            conn.createQuery("UPDATE emergencia SET nombre = :nombre, descripcion = :descripcion, fecha = :fecha, ubicacion = :ubicacion WHERE id = :id")
+            conn.createQuery("UPDATE emergencia SET nombre = :nombre, descripcion = :descripcion, fecha_inicio = :fecha, ubicacion = :ubicacion WHERE id = :id")
                     .bind(emergencia)
                     .executeUpdate();
         }
@@ -32,7 +32,7 @@ public class EmergenciaRepository extends Repository<Emergencia> {
 
     public Emergencia findEmergenciaById(Long id) {
         try (Connection connection = sql2o.open()) {
-            return connection.createQuery("SELECT * FROM emergencia WHERE id = :id")
+            return connection.createQuery("SELECT id, nombre, descripcion, estado, ubicacion, institucion_id FROM emergencia WHERE id = :id")
                     .addParameter("id", id)
                     .executeAndFetchFirst(Emergencia.class);
         }
@@ -48,10 +48,23 @@ public class EmergenciaRepository extends Repository<Emergencia> {
 
     public List<Emergencia> findAll() {
         try (Connection connection = sql2o.open()) {
-            return connection.createQuery("SELECT * FROM emergencia")
+            List<Emergencia> emergencias = connection.createQuery("SELECT id, nombre, descripcion, estado, institucion_id FROM emergencia")
                     .executeAndFetch(Emergencia.class);
+
+            for (Emergencia emergencia : emergencias) {
+                System.out.println("ID: " + emergencia.getId());
+                System.out.println("Nombre: " + emergencia.getNombre());
+                System.out.println("Descripción: " + emergencia.getDescripcion());
+                System.out.println("Estado: " + emergencia.getEstado());
+
+                System.out.println("Institución ID: " + emergencia.getInstitucion_id());
+                System.out.println("-------------------------------");
+            }
+
+            return emergencias;
         }
     }
+
 
 
 }

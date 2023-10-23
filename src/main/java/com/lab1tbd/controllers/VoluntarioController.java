@@ -21,7 +21,6 @@ import java.util.List;
 import java.util.Map;
 
 
-@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api/voluntario")
 @Controller
@@ -85,26 +84,31 @@ public class VoluntarioController {
     @GetMapping("/listado-emergencias-y-tareas")
     public Map<String, Object> listadoEmergenciasYTareas() {
         List<Emergencia> emergencias = emergenciaService.getAllEmergencias();
+        System.out.println("Emergencias obtenidas: " + emergencias);
 
-        Map<Emergencia, List<Tarea>> emergenciaTareas = new HashMap<>();
-        Map<Tarea, Integer> tareaVoluntarios = new HashMap<>();
+        Map<Long, List<Tarea>> emergenciaTareas = new HashMap<>();
+        Map<Long, Integer> tareaVoluntarios = new HashMap<>();
 
         for (Emergencia emergencia : emergencias) {
             List<Tarea> tareas = tareaService.getTareasByEmergenciaId(emergencia.getId());
-            emergenciaTareas.put(emergencia, tareas);
+            System.out.println("Tareas para la emergencia " + emergencia.getNombre() + " (ID: " + emergencia.getId() + "): " + tareas);
+            emergenciaTareas.put(emergencia.getId(), tareas);
 
             for (Tarea tarea : tareas) {
                 int cantidadVoluntarios = rankingService.getCantidadVoluntariosPorTarea(tarea.getId());
-                tareaVoluntarios.put(tarea, cantidadVoluntarios);
+                System.out.println("Cantidad de voluntarios para la tarea " + tarea.getNombre() + " (ID: " + tarea.getId() + "): " + cantidadVoluntarios);
+                tareaVoluntarios.put(tarea.getId(), cantidadVoluntarios);
             }
         }
 
         Map<String, Object> result = new HashMap<>();
+        result.put("emergencias", emergencias);
         result.put("emergenciaTareas", emergenciaTareas);
         result.put("tareaVoluntarios", tareaVoluntarios);
 
         return result;
     }
+
 }
 
 

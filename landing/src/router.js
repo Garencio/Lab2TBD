@@ -37,9 +37,9 @@ const routes = [
         component: UserRegister,
     },
     {
-        path: '/tareas-con-menos-voluntarios', // Nueva ruta para la lista de tareas con menos voluntarios
+        path: '/tareas-con-menos-voluntarios',
         name: 'TareasConMenosVoluntarios',
-        component: TareasConMenosVoluntarios, // Asigna el componente correspondiente
+        component: TareasConMenosVoluntarios,
     },
 ];
 

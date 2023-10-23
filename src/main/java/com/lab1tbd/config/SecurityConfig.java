@@ -24,8 +24,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/voluntario/register", "/api/voluntario/login").permitAll()
-                .antMatchers("/api/coordinador/home", "/api/voluntario/home").hasAnyRole("COORDINADOR", "VOLUNTARIO")
+                .antMatchers("/api/voluntario/register", "/api/voluntario/login", "/api/coordinador/register", "/api/coordinador/login", "/api/voluntario/listado-emergencias-y-tareas").permitAll()
+                .antMatchers("/api/coordinador/home", "/api/voluntario/home").hasAnyAuthority("ROLE_COORDINADOR", "ROLE_VOLUNTARIO")
+                .antMatchers("/api/ruta/a/tareas-con-menos-voluntarios").hasAuthority("ROLE_COORDINADOR")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

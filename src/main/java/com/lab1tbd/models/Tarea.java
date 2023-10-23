@@ -15,10 +15,11 @@ public class Tarea {
     private Long id;
     private String nombre;
     private String descripcion;
-    private LocalDateTime fechaAsignacion;
+    private LocalDateTime fecha_asignacion;
     private Point ubicacion;
-    private Long estadoTareaId;
-    private Long emergenciaId;
+    private Long estado_tarea_id;
+    private Long emergencia_id;
+    private Long coordinador_id;
 
 
 }
