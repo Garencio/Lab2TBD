@@ -1,4 +1,5 @@
 CREATE EXTENSION postgis;
+
 CREATE TABLE coordinador_log (
     id BIGSERIAL PRIMARY KEY,
     coordinador_id BIGINT,
@@ -6,6 +7,15 @@ CREATE TABLE coordinador_log (
     table_name VARCHAR(255),
     record_id BIGINT,
     timestamp TIMESTAMP DEFAULT NOW()
+);
+-- Tabla Coordinador
+CREATE TABLE coordinador (
+    id BIGSERIAL PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    contrasena VARCHAR(255) NOT NULL,
+    telefono VARCHAR(50),
+    direccion VARCHAR(255)
 );
 
 -- Tabla Institucion
@@ -43,15 +53,6 @@ CREATE TABLE tarea (
     emergencia_id INTEGER REFERENCES emergencia(id),
     coordinador_id BIGINT REFERENCES coordinador(id)
 );
--- Tabla Coordinador
-CREATE TABLE coordinador (
-    id BIGSERIAL PRIMARY KEY,
-    nombre VARCHAR(255) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL,
-    contrasena VARCHAR(255) NOT NULL,
-    telefono VARCHAR(50),
-    direccion VARCHAR(255),
-);
 -- Tabla Habilidad
 CREATE TABLE habilidad (
     id BIGSERIAL PRIMARY KEY,
@@ -71,7 +72,7 @@ CREATE TABLE voluntario (
     email VARCHAR(255) UNIQUE NOT NULL,
     contrasena VARCHAR(255) NOT NULL,
     telefono VARCHAR(50),
-    direccion VARCHAR(255),
+    direccion VARCHAR(255)
 );
 -- Tabla Ranking
 CREATE TABLE ranking (
