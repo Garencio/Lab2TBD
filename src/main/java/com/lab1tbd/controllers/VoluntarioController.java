@@ -9,11 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 
 
@@ -33,6 +32,16 @@ public class VoluntarioController {
     @Autowired
     VoluntarioService voluntarioService;
 
+    @GetMapping("/home")
+    public String homePage(Model model, Principal principal) {
+        // Obtiene el nombre de usuario del voluntario autenticado
+        String username = principal.getName();
+        Voluntario voluntario = voluntarioService.findVoluntarioByEmail(username);
+        // Elimina la contraseña antes de enviar los datos a la vista
+        voluntario.setContrasena(null);
+        model.addAttribute("voluntario", voluntario);
+        return "voluntario_home";
+    }
     @PostMapping("/register")
     public ResponseEntity<Voluntario> registerVoluntario(@RequestBody Voluntario voluntario) {
         Voluntario Vol = voluntarioService.findVoluntarioByEmail(voluntario.getEmail());
@@ -40,6 +49,7 @@ public class VoluntarioController {
             return ResponseEntity.badRequest().body(null);
         } else {
             voluntario.setContrasena(bCryptPasswordEncoder.encode(voluntario.getContrasena()));
+            voluntario.setFechaRegistro(LocalDateTime.now());
             Long id = voluntarioService.saveVoluntario(voluntario);
             voluntario.setId(id);
             return ResponseEntity.ok(voluntario);
@@ -48,7 +58,6 @@ public class VoluntarioController {
 
     @PostMapping("/login")
     public ResponseEntity<?> loginVoluntario(@RequestBody Voluntario voluntario) {
-        logger.info("Intentando iniciar sesión con email: {}", voluntario.getEmail());
         Voluntario Vol = voluntarioService.findVoluntarioByEmail(voluntario.getEmail());
         if (Vol == null || !bCryptPasswordEncoder.matches(voluntario.getContrasena(), Vol.getContrasena())) {
             return ResponseEntity.status(401).body("Credenciales incorrectas");

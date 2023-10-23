@@ -13,7 +13,7 @@ public class CoordinadorRepository extends Repository<Coordinador> {
 
     public Long createCoordinador(Coordinador coordinador){
         try (Connection connection = sql2o.open()){
-            return (Long) connection.createQuery("INSERT INTO coordinador(nombre, email, contrasena, telefono, direccion) VALUES (:nombre, :email, :contrasena, :telefono, :direccion)", true)
+            return (Long) connection.createQuery("INSERT INTO coordinador(nombre, email, telefono, direccion, fechaRegistro) VALUES (:nombre, :email, :telefono, :direccion, :fechaRegistro)", true)
                     .bind(coordinador)
                     .executeUpdate()
                     .getKey();
