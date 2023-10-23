@@ -27,5 +27,23 @@ public class EmeHabilidadRepository extends Repository<EmeHabilidad> {
                     .executeUpdate();
         }
     }
+
+    public EmeHabilidad findEmeHabilidadById(Long id) {
+        try (Connection connection = sql2o.open()) {
+            return connection.createQuery("SELECT * FROM eme_habilidad WHERE id = :id")
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(EmeHabilidad.class);
+        }
+    }
+
+    public void deleteEmeHabilidadById(Long id) {
+        try (Connection connection = sql2o.open()) {
+            connection.createQuery("DELETE FROM eme_habilidad WHERE id = :id")
+                    .addParameter("id", id)
+                    .executeUpdate();
+        }
+    }
+
+
 }
 

@@ -35,4 +35,22 @@ public class CoordinadorRepository extends Repository<Coordinador> {
                     .executeAndFetchFirst(Coordinador.class);
         }
     }
+
+    public Coordinador findCoordinadorById(Long id) {
+        try (Connection connection = sql2o.open()) {
+            return connection.createQuery("SELECT * FROM coordinador WHERE id = :id")
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(Coordinador.class);
+        }
+    }
+
+    public void deleteCoordinadorById(Long id) {
+        try (Connection connection = sql2o.open()) {
+            connection.createQuery("DELETE FROM coordinador WHERE id = :id")
+                    .addParameter("id", id)
+                    .executeUpdate();
+        }
+    }
+
+
 }

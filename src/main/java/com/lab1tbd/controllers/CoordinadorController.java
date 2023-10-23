@@ -1,6 +1,8 @@
 package com.lab1tbd.controllers;
 
 import com.lab1tbd.models.Coordinador;
+import com.lab1tbd.models.Emergencia;
+import com.lab1tbd.models.Tarea;
 import com.lab1tbd.services.CoordinadorService;
 import com.lab1tbd.services.JwtService;
 import org.slf4j.Logger;
@@ -8,10 +10,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/coordinador")
@@ -28,6 +31,16 @@ public class CoordinadorController {
     @Autowired
     CoordinadorService coordinadorService;
 
+    @GetMapping("/home")
+    public String homePage(Model model, Principal principal) {
+        // Obtiene el nombre de usuario del coordinador autenticado
+        String username = principal.getName();
+        Coordinador coordinador = coordinadorService.findCoordinadorByEmail(username);
+        // Elimina la contraseña antes de enviar los datos a la vista
+        coordinador.setContrasena(null);
+        model.addAttribute("coordinador", coordinador);
+        return "home";
+    }
     @PostMapping("/register")
     public ResponseEntity<Coordinador> registerCoordinador(@RequestBody Coordinador coordinador) {
         Coordinador coor = coordinadorService.findCoordinadorByEmail(coordinador.getEmail());
@@ -50,5 +63,9 @@ public class CoordinadorController {
         String token = jwtService.generateTokenForCoordinador(coor);
         return ResponseEntity.ok(token);
     }
+
+
+
+
 
 }

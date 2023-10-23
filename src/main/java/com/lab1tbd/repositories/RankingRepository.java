@@ -27,4 +27,23 @@ public class RankingRepository extends Repository<Ranking> {
                     .executeUpdate();
         }
     }
+
+    public Ranking findRankingById(Long id) {
+        try (Connection connection = sql2o.open()) {
+            return connection.createQuery("SELECT * FROM ranking WHERE id = :id")
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(Ranking.class);
+        }
+    }
+
+
+    public void deleteRankingById(Long id) {
+        try (Connection connection = sql2o.open()) {
+            connection.createQuery("DELETE FROM ranking WHERE id = :id")
+                    .addParameter("id", id)
+                    .executeUpdate();
+        }
+    }
+
+
 }

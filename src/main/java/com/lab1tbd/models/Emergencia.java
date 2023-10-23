@@ -18,6 +18,7 @@ public class Emergencia {
     private LocalDateTime fechaInicio;
     private Point ubicacion;
     private Long institucionId;
+    private String estado;
 
 }
 

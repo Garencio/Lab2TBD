@@ -27,4 +27,22 @@ public class VolHabilidadRepository extends Repository<VolHabilidad> {
                     .executeUpdate();
         }
     }
+
+    public VolHabilidad findVolHabilidadById(Long id) {
+        try (Connection connection = sql2o.open()) {
+            return connection.createQuery("SELECT * FROM vol_habilidad WHERE id = :id")
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(VolHabilidad.class);
+        }
+    }
+
+    public void deleteVolHabilidadById(Long id) {
+        try (Connection connection = sql2o.open()) {
+            connection.createQuery("DELETE FROM vol_habilidad WHERE id = :id")
+                    .addParameter("id", id)
+                    .executeUpdate();
+        }
+    }
+
+
 }
