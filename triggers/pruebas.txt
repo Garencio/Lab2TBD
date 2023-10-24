@@ -1,0 +1,50 @@
+-- Estados de una tarea --
+INSERT INTO estado_tarea (nombre, descripcion)
+VALUES ('Pendiente', 'La tarea está pendiente y aún no ha comenzado.');
+
+INSERT INTO estado_tarea (nombre, descripcion)
+VALUES ('En proceso', 'La tarea ha sido iniciada y está en curso.');
+
+INSERT INTO estado_tarea (nombre, descripcion)
+VALUES ('Completada', 'La tarea ha sido finalizada exitosamente.');
+
+-- Nueva tarea y Nueva Emergencia --
+
+*Institución Requerida*
+INSERT INTO institucion (nombre, direccion, contacto)
+VALUES ('Institución ABC', 'Avenida 456', 'contacto@institucionabc.com');
+
+*Coordinador Requerido*
+INSERT INTO coordinador (nombre, email, contrasena, telefono, direccion)
+VALUES ('Juan Pérez', 'juan.perez@email.com', 'contraseña123', '+1234567890', 'Calle 123');
+
+--Emergencia
+INSERT INTO emergencia (nombre, descripcion, estado, fecha_inicio, ubicacion, institucion_id, coordinador_id)
+VALUES ('Incendio en el bosque', 'Un incendio grande en el bosque cercano', 'Iniciada', NOW(), ST_GeomFromText('POINT(-71.060316 48.432044)', 4326), 1, 1);
+
+--Tarea
+INSERT INTO tarea (nombre, descripcion, fecha_asignacion, estado_tarea_id, emergencia_id, coordinador_id)
+VALUES ('Apagar incendio', 'Tarea para apagar un incendio en la zona norte.', NOW(), 1, 1, 1);
+
+-- Modificando Emergencia/Tarea --
+-- Tarea --
+Crear: Ya se creo, se verá en el log.
+-- Setear a En proceso
+UPDATE tarea
+SET estado_tarea_id = 2
+WHERE id = 1;
+-- Setear a completada
+UPDATE tarea
+SET estado_tarea_id = 3
+WHERE id = 1;
+-- Emergencia --
+Crear/Iniciar: Ya se creo, se verá en el log.
+-- Cancelar
+UPDATE emergencia
+SET estado = 'Cancelada'
+WHERE id = 1;
+-- Finalizar
+UPDATE emergencia
+SET estado = 'Finalizada'
+WHERE id = 1;
+
