@@ -14,7 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private UserDetailsService userDetailsService; // Necesario para cargar los detalles del usuario
+    private UserDetailsService userDetailsService;
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
@@ -24,18 +24,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/voluntario/register", "/api/voluntario/login").permitAll()
-                .antMatchers("/api/coordinador/home", "/api/voluntario/home").hasAnyRole("COORDINADOR", "VOLUNTARIO") // Permite a coordinadores y voluntarios
+                .antMatchers("/api/voluntario/register", "/api/voluntario/login", "/api/coordinador/register", "/api/coordinador/login", "/api/voluntario/listado-emergencias-y-tareas").permitAll()
+                .antMatchers("/api/coordinador/home", "/api/voluntario/home").hasAnyAuthority("ROLE_COORDINADOR", "ROLE_VOLUNTARIO")
+                .antMatchers("/api/ruta/a/tareas-con-menos-voluntarios").hasAuthority("ROLE_COORDINADOR")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .defaultSuccessUrl("/api/coordinador/home", true) // Redirige a la página de inicio después del inicio de sesión
+                .defaultSuccessUrl("/api/coordinador/home", true)
                 .permitAll()
                 .and()
                 .logout()
                 .permitAll();
 
-        // Habilita la autenticación basada en UserDetailsService
         http.userDetailsService(userDetailsService);
     }
 }

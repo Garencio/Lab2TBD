@@ -4,6 +4,8 @@ import com.lab1tbd.models.Tarea;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
+import java.util.List;
+
 @org.springframework.stereotype.Repository
 public class TareaRepository extends Repository<Tarea> {
 
@@ -30,7 +32,7 @@ public class TareaRepository extends Repository<Tarea> {
 
     public Tarea findTareaById(Long id) {
         try (Connection connection = sql2o.open()) {
-            return connection.createQuery("SELECT * FROM tarea WHERE id = :id")
+            return connection.createQuery("SELECT id, nombre, descripcion, ubicacion, estado_tarea_id, emergencia_id FROM tarea WHERE id = :id")
                     .addParameter("id", id)
                     .executeAndFetchFirst(Tarea.class);
         }
@@ -41,6 +43,14 @@ public class TareaRepository extends Repository<Tarea> {
             connection.createQuery("DELETE FROM tarea WHERE id = :id")
                     .addParameter("id", id)
                     .executeUpdate();
+        }
+    }
+
+    public List<Tarea> findTareasByEmergenciaId(Long idEmergencia) {
+        try (Connection connection = sql2o.open()) {
+            return connection.createQuery("SELECT id, nombre, descripcion, estado_tarea_id, emergencia_id FROM tarea WHERE emergencia_id = :idEmergencia")
+                    .addParameter("idEmergencia", idEmergencia)
+                    .executeAndFetch(Tarea.class);
         }
     }
 

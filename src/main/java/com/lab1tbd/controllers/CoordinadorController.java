@@ -3,6 +3,7 @@ package com.lab1tbd.controllers;
 import com.lab1tbd.models.Coordinador;
 import com.lab1tbd.models.Emergencia;
 import com.lab1tbd.models.Tarea;
+import com.lab1tbd.models.Voluntario;
 import com.lab1tbd.services.CoordinadorService;
 import com.lab1tbd.services.JwtService;
 import org.slf4j.Logger;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Map;
+
 
 @RestController
 @RequestMapping("/api/coordinador")
@@ -33,10 +36,10 @@ public class CoordinadorController {
 
     @GetMapping("/home")
     public String homePage(Model model, Principal principal) {
-        // Obtiene el nombre de usuario del coordinador autenticado
+
         String username = principal.getName();
         Coordinador coordinador = coordinadorService.findCoordinadorByEmail(username);
-        // Elimina la contraseña antes de enviar los datos a la vista
+
         coordinador.setContrasena(null);
         model.addAttribute("coordinador", coordinador);
         return "home";
@@ -55,12 +58,16 @@ public class CoordinadorController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> loginCoordinador(@RequestBody Coordinador coordinador) {
-        Coordinador coor = coordinadorService.findCoordinadorByEmail(coordinador.getEmail());
-        if (coor == null || !bCryptPasswordEncoder.matches(coordinador.getContrasena(), coor.getContrasena())) {
+    public ResponseEntity<?> loginCoordinador(@RequestBody Map<String, String> credentials) {
+        String email = credentials.get("email");
+        String password = credentials.get("contrasena");
+
+        Coordinador coordinador = coordinadorService.findCoordinadorByEmail(email);
+        if (coordinador == null || !bCryptPasswordEncoder.matches(password, coordinador.getContrasena())) {
             return ResponseEntity.status(401).body("Credenciales incorrectas");
         }
-        String token = jwtService.generateTokenForCoordinador(coor);
+
+        String token = jwtService.generateTokenForCoordinador(coordinador);
         return ResponseEntity.ok(token);
     }
 

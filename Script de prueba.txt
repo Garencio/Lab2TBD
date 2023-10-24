@@ -1,0 +1,27 @@
+INSERT INTO coordinador (nombre, email, contrasena, telefono, direccion) VALUES
+('Coordinador Uno', 'coordinador1@email.com', '$2a$10$AxJYONUSVdbGt7mLIRDYzub.xJLWxy7F8CJfRMinn2Fx9oGsm9Rq.', '123456789', 'Dirección 1'),
+('Coordinador Dos', 'coordinador2@email.com', '$2a$10$AxJYONUSVdbGt7mLIRDYzub.xJLWxy7F8CJfRMinn2Fx9oGsm9Rq.', '987654321', 'Dirección 2');
+
+
+-- Insertar datos en institucion
+INSERT INTO institucion (nombre, direccion, contacto) VALUES
+('Cruz Roja', 'Calle Falsa 123', 'contacto@cruzroja.com'),
+('Bomberos', 'Avenida Siempreviva 456', 'contacto@bomberos.com');
+
+-- Insertar datos en estado_tarea
+INSERT INTO estado_tarea (nombre, descripcion) VALUES
+('Pendiente', 'La tarea está pendiente de ser realizada'),
+('En Proceso', 'La tarea está en proceso de ser realizada'),
+('Completada', 'La tarea ha sido completada');
+
+-- Insertar datos en emergencia
+INSERT INTO emergencia (nombre, descripcion, estado, ubicacion, institucion_id, coordinador_id) VALUES
+('Emergencia Uno', 'Descripción de la Emergencia Uno', 'Activa', ST_GeomFromText('POINT(1 1)', 4326), 1, 1),
+('Emergencia Dos', 'Descripción de la Emergencia Dos', 'Activa', ST_GeomFromText('POINT(2 2)', 4326), 2, 2);
+
+
+-- Insertar datos en tarea
+INSERT INTO tarea (nombre, descripcion, fecha_asignacion, ubicacion, estado_tarea_id, emergencia_id, coordinador_id) VALUES
+('Tarea Uno', 'Descripción de la Tarea Uno', NOW(), ST_GeomFromText('POINT(1 1)', 4326), 1, 1, 1),
+('Tarea Dos', 'Descripción de la Tarea Dos', NOW(), ST_GeomFromText('POINT(2 2)', 4326), 2, 2, 2);
+

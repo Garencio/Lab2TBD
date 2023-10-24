@@ -45,5 +45,14 @@ public class RankingRepository extends Repository<Ranking> {
         }
     }
 
+    public int countVoluntariosByTareaId(Long tareaId) {
+        try (Connection con = sql2o.open()) {
+            String sql = "SELECT COUNT(*) FROM ranking WHERE tarea_id = :tareaId";
+            return con.createQuery(sql)
+                    .addParameter("tareaId", tareaId)
+                    .executeScalar(Integer.class);
+        }
+    }
+
 
 }

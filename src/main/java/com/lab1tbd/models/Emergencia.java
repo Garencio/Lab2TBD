@@ -15,10 +15,11 @@ public class Emergencia {
     private Long id;
     private String nombre;
     private String descripcion;
-    private LocalDateTime fechaInicio;
+    private LocalDateTime fecha_inicio;
     private Point ubicacion;
-    private Long institucionId;
+    private Long institucion_id;
     private String estado;
+    private Long coordinador_id;
 
 }
 
