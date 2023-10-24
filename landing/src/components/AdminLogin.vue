@@ -26,6 +26,7 @@ import axios from 'axios';
 import InputField from "@/components/ui/InputField.vue";
 import PrimaryButton from "@/components/ui/PrimaryButton.vue";
 
+
 export default {
   components: {
     InputField,
@@ -46,15 +47,18 @@ export default {
         });
 
         if (response && response.data) {
-          localStorage.setItem('userId', response.data.id);
+          localStorage.setItem('token', response.data);
           alert('Inicio de sesión exitoso!');
+          this.$router.push({ name: 'TareasConMenosVoluntarios' });
         } else {
           alert('Credenciales inválidas. Por favor, intenta nuevamente.');
         }
       } catch (error) {
+        console.error(error);
         alert('Error al iniciar sesión. Por favor, intenta nuevamente.');
       }
     }
+
   }
 };
 </script>

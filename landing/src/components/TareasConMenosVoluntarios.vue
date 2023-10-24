@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <button @click="logout" class="logout-button">Cerrar Sesión</button>
     <div class="column">
       <h2 class="section-title">Lista de Emergencias</h2>
       <ul>
@@ -53,12 +54,33 @@ export default {
       } catch (error) {
         console.error('Error al obtener datos:', error);
       }
+    },
+    logout() {
+      localStorage.removeItem('token');
+      this.$router.push({ name: 'Admin' });
     }
   }
 };
 </script>
 
 <style scoped>
+
+.logout-button {
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  background-color: #44337A;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.logout-button:hover {
+  background-color: #5A4E8D;
+}
+
+
 .container {
   display: flex;
   justify-content: space-between;

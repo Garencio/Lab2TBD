@@ -5,4 +5,7 @@ import router from './router';
 
 const app = createApp(App);
 app.use(router);
+
+localStorage.removeItem('token');
+
 app.mount('#app');
