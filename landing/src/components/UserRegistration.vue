@@ -108,7 +108,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50vh;
+  height: 80vh;
   width: 50vw;
   background-color: #300870;
 }
@@ -122,7 +122,7 @@ export default {
   border: none;
   border-radius: 4px;
   font-size: 1rem;
-  padding: 10px 451px;
+  padding: 10px 440px;
   cursor: pointer;
   transition: background-color 0.3s;
   font-family: 'Roboto Mono', monospace;
@@ -137,7 +137,7 @@ export default {
   flex-direction: column;
   width: 100%;
   max-width: 700px;
-  height: 400px;
+  height: 700px;
   margin: 0 auto;
   padding: 20px;
   border: 5px solid #3810ab;

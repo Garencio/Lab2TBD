@@ -68,12 +68,11 @@ router.beforeEach((to, from, next) => {
 
     if (requiresAuth && !token) {
         console.log('No autenticado, redirigiendo a Login');
-        next({ name: 'admin-login' });
+        next({ name: 'Admin' });
     } else if (requiresCoordinator && !isCoordinator) {
         console.log('No es coordinador, acceso denegado');
         next(false);
     } else {
-        console.log('Acceso permitido');
         next();
     }
 });

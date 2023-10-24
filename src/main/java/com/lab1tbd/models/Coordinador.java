@@ -17,5 +17,4 @@ public class Coordinador {
     private String contrasena;
     private String telefono;
     private String direccion;
-    private LocalDateTime fechaRegistro;
 }

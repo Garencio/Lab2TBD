@@ -1,6 +1,7 @@
 package com.lab1tbd.repositories;
 
 import com.lab1tbd.models.Coordinador;
+import com.lab1tbd.models.Voluntario;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
@@ -13,7 +14,7 @@ public class CoordinadorRepository extends Repository<Coordinador> {
 
     public Long createCoordinador(Coordinador coordinador){
         try (Connection connection = sql2o.open()){
-            return (Long) connection.createQuery("INSERT INTO coordinador(nombre, email, telefono, direccion, fechaRegistro) VALUES (:nombre, :email, :telefono, :direccion, :fechaRegistro)", true)
+            return (Long) connection.createQuery("INSERT INTO coordinador(nombre, email, contrasena, telefono, direccion) VALUES (:nombre, :email, :contrasena, :telefono, :direccion)", true)
                     .bind(coordinador)
                     .executeUpdate()
                     .getKey();
@@ -30,9 +31,22 @@ public class CoordinadorRepository extends Repository<Coordinador> {
 
     public Coordinador findCoordinadorByEmail(String email) {
         try (Connection connection = sql2o.open()) {
-            return connection.createQuery("SELECT * FROM coordinador WHERE email = :email")
+            Coordinador coordinador = connection.createQuery("SELECT * FROM coordinador WHERE email = :email")
                     .addParameter("email", email)
                     .executeAndFetchFirst(Coordinador.class);
+
+
+
+            if (coordinador != null) {
+                System.out.println("Coordinador encontrado: " + coordinador);
+            } else {
+                System.out.println("No se encontró el coordinador con el correo: " + email);
+            }
+
+            return coordinador;
+        } catch (Exception e) {
+            System.out.println("Error al buscar el coordinador: " + e.getMessage());
+            return null;
         }
     }
 

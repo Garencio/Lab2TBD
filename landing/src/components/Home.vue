@@ -4,7 +4,7 @@
     <div class="login-container">
       <div class="login-buttons">
         <router-link to="/admin-login">
-          <button class="login-button">Administrador</button>
+          <button class="login-button">Coordinador</button>
         </router-link>
         <router-link to="/user-main">
           <button class="register-button">Voluntariado</button>
