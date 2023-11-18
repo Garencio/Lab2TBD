@@ -16,6 +16,8 @@ public class Emergencia {
     private String nombre;
     private String descripcion;
     private LocalDateTime fecha_inicio;
+    private Double latitud;
+    private Double longitud;
     private Point ubicacion;
     private Long institucion_id;
     private String estado;

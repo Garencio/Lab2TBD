@@ -22,7 +22,7 @@
 
 
 <script>
-import axios from 'axios';
+import api from '@/api';
 import InputField from "@/components/ui/InputField.vue";
 import PrimaryButton from "@/components/ui/PrimaryButton.vue";
 
@@ -41,24 +41,31 @@ export default {
   methods: {
     async handleLogin() {
       try {
-        const response = await axios.post('http://localhost:8086/api/coordinador/login', {
+        const response = await api.post('http://localhost:8086/api/coordinador/login', {
           email: this.email,
           contrasena: this.password
         });
 
-        if (response && response.data) {
-          localStorage.setItem('token', response.data);
-          alert('Inicio de sesión exitoso!');
-          this.$router.push({ name: 'TareasConMenosVoluntarios' });
+        
+
+        const token = response.data;
+
+        if (token) { 
+          
+          localStorage.setItem('token', token);
+          
+          
+          this.$router.push({ name: 'HomeCoordinador' });
+          
         } else {
-          alert('Credenciales inválidas. Por favor, intenta nuevamente.');
+          
+          this.errorMessage = 'Credenciales inválidas. Por favor, intenta nuevamente.';
         }
       } catch (error) {
-        console.error(error);
-        alert('Error al iniciar sesión. Por favor, intenta nuevamente.');
+        
+        this.errorMessage = 'Error al iniciar sesión. Por favor, intenta nuevamente.';
       }
     }
-
   }
 };
 </script>

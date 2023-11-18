@@ -38,4 +38,10 @@ public class EmergenciaService {
     public void deleteEmergenciaById(Long id) {
         emergenciaRepository.deleteEmergenciaById(id);
     }
+
+    public List<Emergencia> getEmergenciasByRegion(String nombreRegion) {
+        return emergenciaRepository.findEmergenciasByRegion(nombreRegion);
+    }
+
+
 }

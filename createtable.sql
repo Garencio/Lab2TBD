@@ -1,5 +1,13 @@
-CREATE EXTENSION postgis;
+CREATE EXTENSION IF NOT EXISTS postgis;
 
+-- Tabla Region
+CREATE TABLE region (
+    id BIGSERIAL PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    area GEOGRAPHY(GEOMETRY, 4326)
+);
+
+-- Tabla Log del Coordinador
 CREATE TABLE coordinador_log (
     id BIGSERIAL PRIMARY KEY,
     coordinador_id BIGINT,

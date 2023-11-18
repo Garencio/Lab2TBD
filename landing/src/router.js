@@ -3,6 +3,8 @@ import Home from '@/components/Home.vue';
 import AdminLogin from '@/components/AdminLogin.vue';
 import UserMain from '@/components/UserMain.vue';
 import UserLogin from '@/components/UserLogin.vue';
+import HomeCoordinador from '@/components/HomeCoordinador.vue';
+import Regiones from '@/components/Regiones.vue';
 
 
 import UserRegister from '@/components/UserRegistration.vue';
@@ -43,6 +45,18 @@ const routes = [
         component: TareasConMenosVoluntarios,
         meta: { requiresAuth: true, requiresCoordinator: true },
     },
+    {
+        path: '/HomeCoordinador',
+        name: 'HomeCoordinador',
+        component: HomeCoordinador,
+        meta: { requiresAuth: true, requiresCoordinator: true },
+    },
+    {
+        path: '/Regiones',
+        name: 'Regiones',
+        component: Regiones,
+        meta: { requiresAuth: true, requiresCoordinator: true },
+    },
 ];
 
 const router = createRouter({
@@ -52,25 +66,26 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     const token = localStorage.getItem('token');
+    
     let isCoordinator = false;
 
     if (token) {
-        console.log('Token encontrado:', token);
         const decodedToken = decodeToken(token);
-        console.log('Token decodificado:', decodedToken);
+        
         if (decodedToken) {
             isCoordinator = decodedToken.type === 'coordinador';
         }
     }
+    
 
     const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+    
     const requiresCoordinator = to.matched.some(record => record.meta.requiresCoordinator);
+    
 
     if (requiresAuth && !token) {
-        console.log('No autenticado, redirigiendo a Login');
         next({ name: 'Admin' });
     } else if (requiresCoordinator && !isCoordinator) {
-        console.log('No es coordinador, acceso denegado');
         next(false);
     } else {
         next();
@@ -83,7 +98,7 @@ function decodeToken(token) {
         const decodedValue = JSON.parse(atob(base64String));
         return decodedValue;
     } catch (e) {
-        console.error('Error al decodificar el token', e);
+        
         return null;
     }
 }

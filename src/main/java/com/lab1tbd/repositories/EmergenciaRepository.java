@@ -65,7 +65,13 @@ public class EmergenciaRepository extends Repository<Emergencia> {
         }
     }
 
-
+    public List<Emergencia> findEmergenciasByRegion(String nombreRegion) {
+        try (Connection conn = sql2o.open()) {
+            return conn.createQuery("SELECT e.id, e.nombre, e.descripcion, e.estado, e.fecha_inicio, ST_Y(e.ubicacion::geometry) as latitud, ST_X(e.ubicacion::geometry) as longitud, e.institucion_id, e.coordinador_id FROM emergencia e JOIN region r ON ST_Contains(r.area, e.ubicacion) WHERE r.nombre = :nombreRegion")
+                    .addParameter("nombreRegion", nombreRegion)
+                    .executeAndFetch(Emergencia.class);
+        }
+    }
 
 }
 

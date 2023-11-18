@@ -1,27 +1,34 @@
 <template>
-  <div class="container">
-    <button @click="logout" class="logout-button">Cerrar Sesión</button>
-    <div class="column">
-      <h2 class="section-title">Lista de Emergencias</h2>
-      <ul>
-        <li v-for="emergencia in emergencias" :key="emergencia.id">{{ emergencia.nombre }}</li>
-      </ul>
-    </div>
-    <div class="column">
-      <h2 class="section-title">Tareas con Menos Voluntarios</h2>
-      <ul>
-        <li v-for="tarea in tareasConMenosVoluntarios" :key="tarea.id">
-          ID: {{tarea.id}} - {{ tarea.nombre }} - Voluntarios inscritos: {{ tarea.voluntariosInscritos }}
-        </li>
-      </ul>
+  <div>
+    <Header />
+
+    <div class="container">
+      <div class="column">
+        <h2 class="section-title">Lista de Emergencias</h2>
+        <ul>
+          <li v-for="emergencia in emergencias" :key="emergencia.id">{{ emergencia.nombre }}</li>
+        </ul>
+      </div>
+      <div class="column">
+        <h2 class="section-title">Tareas con Menos Voluntarios</h2>
+        <ul>
+          <li v-for="tarea in tareasConMenosVoluntarios" :key="tarea.id">
+            ID: {{tarea.id}} - {{ tarea.nombre }} - Voluntarios inscritos: {{ tarea.voluntariosInscritos }}
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import Header from '@/components/Header.vue';
 
 export default {
+  components: {
+    Header 
+  },
   data() {
     return {
       emergencias: [],
