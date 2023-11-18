@@ -1,9 +1,9 @@
 <template>
-  <router-link to="/">
-    <button class="back-button">Volver</button>
-  </router-link>
   <div class="login-page">
-    <div class="login-container">
+      <router-link to="/">
+        <button class="back-button">Volver</button>
+      </router-link>
+      <div class="login-container">
       <div class="login-buttons">
         <router-link to="/user-login">
           <button class="login-button">Iniciar Sesión</button>
@@ -25,20 +25,20 @@ export default {
 <style scoped>
 .login-page {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  background-color: #24075b;
-  border-radius: 15px;
+  justify-content: center;
+  height: 100vh; /* Ocupa todo el alto de la ventana */
+  margin: 0;
+  padding: 0;
+
 }
 
-
-
 .login-container {
-  background-color: #24075b;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 15px;
+  text-align: center; /* Centra el texto de los elementos hijos */
+  padding: 4%;
+  border-radius: 2rem;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
 .back-button {
@@ -59,22 +59,23 @@ export default {
 }
 
 .login-buttons {
-  text-align: center;
-  border: 2px solid #000;
-  padding: 20px;
-  border-radius: 10px;
+  display: flex;
+  flex-direction: column; /* Apila los botones verticalmente */
+  align-items: center; /* Centra los botones horizontalmente */
+  gap: 2rem; /* Espacio entre botones */
 }
 
 .login-button,
 .register-button {
-  padding: 15px 30px;
-  font-size: 16px;
-  cursor: pointer;
+  min-width: 150px; /* Ajusta según tus necesidades */
+  margin: 5px 0; /* Espacio arriba y abajo */
+  padding: 10px 20px; /* Añade espacio alrededor del texto del botón */
   border: none;
   border-radius: 5px;
-  margin: 10px;
-  transition: background-color 0.3s, color 0.3s;
-  font-family: 'Roboto Mono', monospace;
+
+  color: #000000; /* Color del texto de los botones */
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Transición de color de fondo */
 }
 
 .login-button {

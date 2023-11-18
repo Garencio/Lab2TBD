@@ -15,5 +15,9 @@
 <script>
 </script>
 
+body {
+  background-color: #FFC7C7; 
+}
+
 <style scoped>
 </style>

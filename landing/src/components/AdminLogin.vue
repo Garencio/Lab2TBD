@@ -1,9 +1,9 @@
 <template>
-  <router-link to="/">
-    <button class="back-button">Volver</button>
-  </router-link>
   <div class="main-container">
     <div class="login-container">
+      <router-link to="/">
+    <button class="back-button">Volver</button>
+  </router-link>
       <h2>Login Coordinador</h2>
       <form @submit.prevent="handleLogin" class="form-container">
         <div class="form-group-info">
@@ -20,12 +20,10 @@
   </div>
 </template>
 
-
 <script>
 import api from '@/api';
 import InputField from "@/components/ui/InputField.vue";
 import PrimaryButton from "@/components/ui/PrimaryButton.vue";
-
 
 export default {
   components: {
@@ -46,23 +44,15 @@ export default {
           contrasena: this.password
         });
 
-        
-
         const token = response.data;
 
         if (token) { 
-          
           localStorage.setItem('token', token);
-          
-          
           this.$router.push({ name: 'HomeCoordinador' });
-          
         } else {
-          
           this.errorMessage = 'Credenciales inválidas. Por favor, intenta nuevamente.';
         }
       } catch (error) {
-        
         this.errorMessage = 'Error al iniciar sesión. Por favor, intenta nuevamente.';
       }
     }
@@ -71,39 +61,17 @@ export default {
 </script>
 
 <style scoped>
-
 .main-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50vh;
-  width: 50vw;
+  height: 100vh; /* Cambiado a 100vh para ocupar toda la altura vertical */
   background-color: #300870;
-  border: 10px solid #320a6c;
-}
-
-.form-group-info{
-  margin-top: 15px;
-}
-
-.form-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.form-group-login{
-  margin-top: 40px;
 }
 
 .login-container {
-  display: flex;
-  flex-direction: column;
   width: 100%;
-  max-width: 700px;
-  height: 400px;
-  margin: 0 auto;
+  max-width: 400px; /* Reducido el ancho máximo para un diseño más centrado */
   padding: 20px;
   border: 5px solid #420aa3;
   border-radius: 8px;
@@ -111,12 +79,26 @@ export default {
   background-color: #220864;
   color: #fff;
   font-family: 'Roboto Mono', monospace;
+  text-align: center; /* Centrado de contenido */
 }
 
 h2 {
   margin-bottom: 1rem;
-  text-align: center;
-  margin-top: 50px;
+  margin-top: 20px; /* Alineado el título */
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-group-info {
+  margin-top: 15px;
+}
+
+.form-group-login {
+  margin-top: 20px; /* Alineado el botón */
 }
 
 label {

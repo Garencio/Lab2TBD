@@ -14,62 +14,56 @@
   </div>
 </template>
 
-
 <script>
 export default {
-
+  // Lógica del componente
 };
 </script>
 
 <style scoped>
-
+.login-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Ocupa todo el alto de la ventana */
+  margin: 0;
+  padding: 0;
+}
 
 .login-container {
-  background-color: #24075b;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-}
-h2{
-  font-family: 'Roboto Mono', monospace;
-  text-align: center;
-  color: white;
-  padding: 10px;
+  text-align: center; /* Centra el texto de los elementos hijos */
+  padding: 4%;
+  border-radius: 2rem;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
 .login-buttons {
-  text-align: center;
-  border: 2px solid rgb(0, 0, 0);
-  padding: 20px;
-  border-radius: 10px;
+  display: flex;
+  flex-direction: column; /* Apila los botones verticalmente */
+  align-items: center; /* Centra los botones horizontalmente */
+  gap: 2rem; /* Espacio entre botones */
+
 }
 
-.login-button,
-.register-button {
-  padding: 15px 30px;
-  font-size: 16px;
-  cursor: pointer;
+.login-button, .register-button {
+  min-width: 150px; /* Ajusta según tus necesidades */
+  margin: 5px 0; /* Espacio arriba y abajo */
+  padding: 10px 20px; /* Añade espacio alrededor del texto del botón */
   border: none;
   border-radius: 5px;
-  margin: 10px;
-  transition: background-color 0.3s, color 0.3s;
-  font-family: 'Roboto Mono', monospace;
+
+  color: #000000; /* Color del texto de los botones */
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Transición de color de fondo */
+
 }
 
-.login-button {
-  background-color: #5f2ab6;
-  color: #fff;
+h2{
+  padding: 2rem;
 }
 
-.register-button {
-  background-color: #5f2ab6;
-  color: #fff;
-}
-
-.login-button:hover,
-.register-button:hover {
-  background-color: #1c2fb7;
-  color: #fff;
+.login-button:hover, .register-button:hover {
+  background-color: #3A5E8D; /* Cambia el color de fondo al pasar el mouse */
 }
 </style>
