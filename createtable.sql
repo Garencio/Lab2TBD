@@ -4,7 +4,7 @@ CREATE EXTENSION IF NOT EXISTS postgis;
 CREATE TABLE region (
     id BIGSERIAL PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
-    area GEOGRAPHY(GEOMETRY, 4326)
+    area GEOMETRY(MULTIPOLYGON, 4326)
 );
 
 -- Tabla Log del Coordinador
