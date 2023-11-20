@@ -6,8 +6,11 @@
           <option value="" disabled>Selecciona una región</option>
           <option v-for="region in regiones" :key="region" :value="region">{{ region }}</option>
         </select>
+        <div class="mostrar-button">
         <button @click="fetchEmergencias">Mostrar Emergencias</button>
-      </div>
+        </div>
+
+        </div>
   
       <div class="emergencias-list">
         <ul v-if="emergencias.length > 0">
@@ -68,16 +71,58 @@
     }
   };
   </script>
+
   
   <style>
-    /*
   .region-selector {
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  height: 15vh;
   }
-  
-  .emergencias-list {
 
-  }
-  */
+button{
+  min-width: 150px; 
+  margin: 5px 0; 
+  padding: 10px 20px; 
+  border: none;
+  border-radius: 5px;
+  color: #000000; 
+  cursor: pointer;
+  transition: background-color 0.3s ease; 
+  font-family: 'Poppins';
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+button:hover{
+  background-color: rgb(111, 37, 126); 
+  color: white;
+}
+
+.emergencias-list{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; 
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  margin-bottom: 3rem;
+  font-family: 'Poppins';
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  opacity: 1;
+  letter-spacing: 3px;
+  flex: 1;
+  padding: 2rem;
+  margin: 4rem;
+
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+
   </style>
   

@@ -22,11 +22,15 @@ INSERT INTO estado_tarea (nombre, descripcion) VALUES
 
 -- Insertar datos en emergencia
 INSERT INTO emergencia (nombre, descripcion, estado, ubicacion, institucion_id, coordinador_id) VALUES
-('Emergencia Santiago', 'Descripción de la Emergencia en Santiago', 'Activa', ST_GeomFromText('POINT(-70.64827 -33.45694)', 4326), 1, 1),
-('Emergencia Valparaíso', 'Descripción de la Emergencia en Valparaíso', 'Activa', ST_GeomFromText('POINT(-71.612688 -33.047238)', 4326), 2, 2),
-('Emergencia Concepción', 'Descripción de la Emergencia en Concepción', 'Activa', ST_GeomFromText('POINT(-73.044390 -36.820135)', 4326), 3, 3),
-('Emergencia Antofagasta', 'Descripción de la Emergencia en Antofagasta', 'Activa', ST_GeomFromText('POINT(-70.404770 -23.652360)', 4326), 4, 4),
-('Emergencia Puerto Montt', 'Descripción de la Emergencia en Puerto Montt', 'Activa', ST_GeomFromText('POINT(-72.942383 -41.471700)', 4326), 5, 5);
+('Emergencia Santiago', 'Incendio', 'Activa', ST_GeomFromText('POINT(-70.6645 -33.4629)', 4326), 1, 1),
+('Emergencia Santiago', 'Inundacion', 'Activa', ST_GeomFromText('POINT(-70.6163 -33.4309)', 4326), 1, 1),
+('Emergencia Valparaíso', 'Derrumbe', 'Activa', ST_GeomFromText('POINT(-71.612688 -33.047238)', 4326), 2, 2),
+('Emergencia Valparaíso', 'Inundacion', 'Activa', ST_GeomFromText('POINT(-71.62725 -33.03936)', 4326), 2, 2),
+('Emergencia Valparaíso', 'Derrumbe', 'Activa', ST_GeomFromText('POINT(-71.6258 -33.0393)', 4326), 2, 2),
+('Emergencia Concepción', 'Incendio Forestal', 'Activa', ST_GeomFromText('POINT(-73.044390 -36.820135)', 4326), 3, 3),
+('Emergencia Antofagasta', 'Incendio', 'Activa', ST_GeomFromText('POINT(-70.404770 -23.652360)', 4326), 4, 4),
+('Emergencia Puerto Montt', 'Inundacion', 'Activa', ST_GeomFromText('POINT(-72.942383 -41.471700)', 4326), 5, 5);
+
 
 -- Insertar datos en tarea
 INSERT INTO tarea (nombre, descripcion, fecha_asignacion, ubicacion, estado_tarea_id, emergencia_id, coordinador_id) VALUES

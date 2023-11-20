@@ -1,2 +1,10 @@
 @import './base.css';
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Roboto+Mono:wght@400;500&display=swap');
+
+body{
+    background-image: url('/fondo1.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    height: 100vh; 
+}

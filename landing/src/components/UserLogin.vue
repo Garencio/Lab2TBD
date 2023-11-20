@@ -1,21 +1,21 @@
 <template>
   <div class="login-page">
-    <router-link to="/user-main">
-      <button class="back-button">Volver</button>
-    </router-link>
     <div class="main-container">
       <div class="login-container">
-        <h2>Login Voluntariado</h2>
+        <h2>LOGIN VOLUNTARIADO</h2>
         <form @submit.prevent="handleLogin" class="form-container">
           <div class="form-group-info">
-            <InputField label="Correo Electrónico:" inputId="email" v-model="email" />
+            <InputField label="Correo Electrónico: " inputId="email" v-model="email" />
           </div>
           <div class="form-group-info">
-            <InputField label="Contraseña:" inputId="password" type="password" v-model="password" />
+            <InputField label="Contraseña: " inputId="password" type="password" v-model="password" />
           </div>
           <div class="form-group-login">
-            <PrimaryButton>Login</PrimaryButton>
+            <button class="login-button">Login</button>
           </div>
+          <router-link to="/user-main">
+            <button class="back-button">Volver</button>
+          </router-link>
         </form>
       </div>
     </div>
@@ -68,7 +68,6 @@ export default {
   align-items: center;
   justify-content: center;
   height: 100vh; /* Ocupa todo el alto de la ventana */
-  background-color: #300870;
 }
 
 .main-container {
@@ -76,24 +75,28 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 700px;
-  height: 400px;
+  width: 35rem;
+  height: 30rem;
   margin-top: 20px; /* Ajusta el margen superior */
-  background-color: #220864; /* Color de fondo morado oscuro */
-  border: 5px solid #420aa3;
-  border-radius: 8px;
+  background-color: #000000; /* Color de fondo morado oscuro */
+  opacity: 0.6;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   color: #fff; /* Color del texto */
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Poppins';
+  letter-spacing: 4px;
 }
 
 h2 {
   margin: 50px 0 20px; /* Ajusta el margen superior e inferior */
   text-align: center;
+  font-weight: bold;
+  color: white;
+  opacity: 1;
+  letter-spacing: 3px;
 }
 
 .form-group-info {
-  margin-top: 15px;
+  margin-top: 1rem;
 }
 
 .form-container {
@@ -127,37 +130,22 @@ input:focus {
   border-color: #1027bb;
 }
 
-button {
-  width: 100%;
-  padding: 0.5rem 0;
-  background-color: #20056c;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  font-family: 'Roboto Mono', monospace;
-}
 
-button:hover {
-  background-color: #cbb51c;
-}
-
-.back-button {
-  background-color: #320a6c; /* Morado más claro */
-  margin-top: 20px; /* Ajusta el margen superior */
+.back-button, .login-button {
+  background-color: #ffffff; /* Morado más claro */
+  margin-top: 2rem; /* Ajusta el margen superior */
   color: #fff;
-  border: none;
+  color: #000000;
   border-radius: 4px;
   font-size: 1rem;
-  padding: 10px 20px; /* Ajusta el espaciado del botón */
+  padding: 10px 50px; /* Ajusta el espaciado del botón */
   cursor: pointer;
   transition: background-color 0.3s;
-  font-family: 'Roboto Mono', monospace; /* Aplicar la fuente Roboto Mono */
+  font-family: 'Poppins', monospace; /* Aplicar la fuente Roboto Mono */
 }
 
-.back-button:hover {
-  background-color: #5c359c; /* Color de fondo más oscuro al pasar el cursor */
+.back-button:hover, .login-button:hover {
+  background-color: rgb(111, 37, 126); 
+  color: white;
 }
 </style>

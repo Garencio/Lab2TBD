@@ -1,42 +1,38 @@
 <template>
   <div class="login-page">
     <div class="register-container">
-      <router-link to="/user-main">
-        <button class="back-button">Volver</button>
-      </router-link>
-      <h2>Registro Voluntariado</h2>
+      <h2>REGISTRO VOLUNTARIADO</h2>
       <form @submit.prevent="handleRegister" class="register-form">
         <div class="form-group">
-          <label for="nombre">Nombre:</label>
-          <InputField inputId="nombre" v-model="nombre" />
+          <InputField label="Nombre: " inputId="nombre" v-model="nombre" />
         </div>
         <div class="form-group">
-          <label for="email">Email:</label>
-          <InputField inputId="email" type="email" v-model="email" />
+          <InputField label="Email: " inputId="email" type="email" v-model="email" />
         </div>
         <div class="form-group">
-          <label for="contrasena">Contraseña:</label>
-          <InputField inputId="contrasena" type="password" v-model="contrasena" />
+          <InputField label="Contraseña: " inputId="contrasena" type="password" v-model="contrasena" />
         </div>
         <div class="form-group">
-          <label for="passwordConfirm">Confirmar Contraseña:</label>
-          <InputField inputId="passwordConfirm" type="password" v-model="passwordConfirm" />
+          <InputField label="Confirmar Contraseña: " inputId="passwordConfirm" type="password" v-model="passwordConfirm" />
         </div>
         <div class="form-group">
-          <label for="telefono">Teléfono:</label>
-          <InputField inputId="telefono" v-model="telefono" />
+          <InputField label="Teléfono: " inputId="telefono" v-model="telefono" />
         </div>
         <div class="form-group">
-          <label for="direccion">Dirección:</label>
-          <InputField inputId="direccion" v-model="direccion" />
+          <InputField label="Dirección: " inputId="direccion" v-model="direccion" />
         </div>
         <div class="form-group-button">
-          <PrimaryButton>Registrar</PrimaryButton>
+          <button class="register-button">Registrar</button>
         </div>
+        <router-link to="/user-main">
+          <button class="back-button">Volver</button>
+        </router-link>
       </form>
     </div>
   </div>
 </template>
+
+
 
 <script>
 import api from "@/api";
@@ -108,29 +104,32 @@ export default {
   align-items: center;
   justify-content: center;
   height: 100vh; /* Ocupa todo el alto de la ventana */
-  background-color: #300870;
 }
 
 .register-container {
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 50rem;
-  height: 50rem;
-  margin: 20px auto; /* Ajusta el margen superior e inferior */
-  padding: 20px;
-  border: 5px solid #3810ab;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #220864; /* Color de fondo morado oscuro */
+  max-width: 40rem;
+  height: 45rem;
+  padding: 3rem;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+  background-color: #000000; /* Color de fondo morado oscuro */
   color: #fff; /* Color del texto */
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Poppins';
   text-align: center; /* Centra el texto de los elementos hijos */
+  opacity: 0.6;
+
 }
 
 h2 {
-  margin: 25px 0; /* Ajusta el margen superior e inferior */
-  font-size: 1.5rem;
+  margin: 20px 10px;
+  padding: 1rem; /* Ajusta el margen superior e inferior */
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: white;
+  letter-spacing: 3px;
+
 }
 
 form {
@@ -141,17 +140,10 @@ form {
 }
 
 .form-group {
-  margin-bottom: 15px; /* Ajusta el margen inferior */
+  margin-bottom: 1rem; /* Ajusta el margen inferior */
+  letter-spacing: 3px;
 }
 
-label {
-  display: block;
-  font-weight: 500;
-  color: #ffffff;
-  margin-bottom: 0.3rem;
-  text-align: left;
-  padding: 1px;
-}
 
 input {
   width: 100%;
@@ -167,35 +159,22 @@ input:focus {
   border-color: #7642d9;
 }
 
-PrimaryButton {
-  background-color: #7642d9;
-  color: #fff;
+.back-button, .register-button {
+  background-color: #ffffff;
+  margin: 1rem;
+  margin-top: 20px;
+  color: #000000;
   border: none;
   border-radius: 4px;
   font-size: 1rem;
+  padding: 10px 50px; /* Ajusta el espaciado del botón */
   cursor: pointer;
   transition: background-color 0.3s;
-  font-family: 'Roboto Mono', monospace;
-  padding: 15px 30px; /* Ajusta el espaciado del botón */
+  font-family: 'Poppins'; /* Aplicar la fuente Roboto Mono */
 }
 
-PrimaryButton:hover {
-  background-color: #5c359c;
-}
-
-.back-button {
-  background-color: #1e044b;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  padding: 10px 30px; /* Ajusta el espaciado del botón */
-  cursor: pointer;
-  transition: background-color 0.3s;
-  font-family: 'Roboto Mono', monospace; /* Aplicar la fuente Roboto Mono */
-}
-
-.back-button:hover {
-  background-color: #a99f17;
+.back-button:hover, .register-button:hover {
+  background-color: rgb(111, 37, 126); 
+  color: white;
 }
 </style>

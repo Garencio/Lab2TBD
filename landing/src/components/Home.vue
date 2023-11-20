@@ -1,7 +1,7 @@
 <template>
   <div class="login-page">
-    <h2>IDENTIFICARSE</h2>
     <div class="login-container">
+      <h2>IDENTIFICARSE</h2>
       <div class="login-buttons">
         <router-link to="/admin-login">
           <button class="login-button">Coordinador</button>
@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  // Lógica del componente
+  
 };
 </script>
 
@@ -26,44 +26,49 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh; /* Ocupa todo el alto de la ventana */
+  height: 100vh; 
   margin: 0;
   padding: 0;
 }
 
 .login-container {
-  text-align: center; /* Centra el texto de los elementos hijos */
+  text-align: center; 
   padding: 4%;
-  border-radius: 2rem;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+  background-color: #000000;
+  opacity: 0.6;
 }
 
 .login-buttons {
   display: flex;
-  flex-direction: column; /* Apila los botones verticalmente */
-  align-items: center; /* Centra los botones horizontalmente */
-  gap: 2rem; /* Espacio entre botones */
-
+  flex-direction: column; 
+  align-items: center; 
+  gap: 2rem; 
 }
 
 .login-button, .register-button {
-  min-width: 150px; /* Ajusta según tus necesidades */
-  margin: 5px 0; /* Espacio arriba y abajo */
-  padding: 10px 20px; /* Añade espacio alrededor del texto del botón */
+  min-width: 150px; 
+  margin: 5px 0; 
+  padding: 10px 20px; 
   border: none;
   border-radius: 5px;
-
-  color: #000000; /* Color del texto de los botones */
+  color: #000000; 
   cursor: pointer;
-  transition: background-color 0.3s ease; /* Transición de color de fondo */
-
+  transition: background-color 0.3s ease; 
+  font-family: 'Poppins';
 }
 
 h2{
-  padding: 2rem;
+  margin-bottom: 3rem;
+  font-family: 'Poppins';
+  font-weight: bold;
+  color: white;
+  opacity: 1;
+  letter-spacing: 3px;
 }
 
 .login-button:hover, .register-button:hover {
-  background-color: #3A5E8D; /* Cambia el color de fondo al pasar el mouse */
+  background-color: rgb(111, 37, 126); 
+  color: white;
 }
 </style>

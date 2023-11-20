@@ -4,13 +4,13 @@
 
     <div class="container">
       <div class="column">
-        <h2 class="section-title">Lista de Emergencias</h2>
+        <h2 class="section-title">LISTA DE EMERGENCIAS</h2>
         <ul>
           <li v-for="emergencia in emergencias" :key="emergencia.id">{{ emergencia.nombre }}</li>
         </ul>
       </div>
       <div class="column">
-        <h2 class="section-title">Tareas con Menos Voluntarios</h2>
+        <h2 class="section-title">TAREAS CON MENOS VOLUNTARIOS</h2>
         <ul>
           <li v-for="tarea in tareasConMenosVoluntarios" :key="tarea.id">
             ID: {{tarea.id}} - {{ tarea.nombre }} - Voluntarios inscritos: {{ tarea.voluntariosInscritos }}
@@ -90,16 +90,19 @@ export default {
 
 .container {
   display: flex;
-  justify-content: space-between;
-  margin: 0px 200px 500px;
-}
+  flex-direction: row; /* Apila los elementos verticalmente */
+  justify-content: center; /* Centra verticalmente */
+  align-items: center; /* Centra horizontalmente */
+  height: 100vh;}
 
 .column {
   flex: 1;
-  padding: 40px 100px;
-  border: 1px solid #000000;
-  border-radius: 5px;
-  background-color: #300870;
+  padding: 2rem;
+  margin: 4rem;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+  background-color: #000000;
+  opacity: 0.7;
+  letter-spacing: 3px;
 }
 
 .section-title {
@@ -120,7 +123,7 @@ li {
   margin: 10px 0;
   font-size: 16px;
   color: #ffffff;
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Poppins';
   text-align: center;
 
 }

@@ -1,20 +1,20 @@
 <template>
   <div class="main-container">
     <div class="login-container">
-      <router-link to="/">
-    <button class="back-button">Volver</button>
-  </router-link>
-      <h2>Login Coordinador</h2>
+      <h2>LOGIN COORDINADOR</h2>
       <form @submit.prevent="handleLogin" class="form-container">
         <div class="form-group-info">
-          <InputField label="Correo Electrónico:" inputId="email" v-model="email" />
+          <InputField label="Correo Electrónico: " inputId="email" v-model="email" />
         </div>
         <div class="form-group-info">
-          <InputField label="Contraseña:" inputId="password" type="password" v-model="password" />
+          <InputField label="Contraseña: " inputId="password" type="password" v-model="password" />
         </div>
         <div class="form-group-login">
-          <PrimaryButton>Login</PrimaryButton>
+          <button class="login-button">Login</button>
         </div>
+        <router-link to="/">
+          <button class="back-button">Volver</button>
+        </router-link>
       </form>
     </div>
   </div>
@@ -66,25 +66,27 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100vh; /* Cambiado a 100vh para ocupar toda la altura vertical */
-  background-color: #300870;
 }
 
 .login-container {
   width: 100%;
-  max-width: 400px; /* Reducido el ancho máximo para un diseño más centrado */
+  max-width: 30rem; /* Reducido el ancho máximo para un diseño más centrado */
+  height: 24rem;
   padding: 20px;
-  border: 5px solid #420aa3;
-  border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #220864;
   color: #fff;
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Poppins';
   text-align: center; /* Centrado de contenido */
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+  background-color: #000000;
+  opacity: 0.6;
 }
 
 h2 {
   margin-bottom: 1rem;
   margin-top: 20px; /* Alineado el título */
+  letter-spacing: 3px;
+  font-weight: bold;
 }
 
 .form-container {
@@ -94,7 +96,8 @@ h2 {
 }
 
 .form-group-info {
-  margin-top: 15px;
+  margin-top: 25px;
+  letter-spacing: 3px;
 }
 
 .form-group-login {
@@ -106,34 +109,21 @@ label {
   font-weight: 500;
 }
 
-input {
-  width: 100%;
-  padding: 0.5rem;
-  margin-bottom: 1rem;
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
-  font-size: 1rem;
-  outline: none;
-}
-
-input:focus {
-  border-color: #1027bb;
-}
 
 button {
-  width: 100%;
-  padding: 0.5rem 0;
-  background-color: #20056c;
-  color: white;
+  min-width: 150px; 
+  margin-top: 25px;
+  padding: 10px 20px; 
   border: none;
-  border-radius: 4px;
-  font-size: 1rem;
+  border-radius: 5px;
+  color: #000000; 
   cursor: pointer;
-  transition: background-color 0.3s;
-  font-family: 'Roboto Mono', monospace;
+  transition: background-color 0.3s ease; 
+  font-family: 'Poppins';
 }
 
 button:hover {
-  background-color: #cbb51c;
+  background-color: rgb(111, 37, 126); 
+  color: white;
 }
 </style>
