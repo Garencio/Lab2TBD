@@ -65,18 +65,18 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Cambiado a 100vh para ocupar toda la altura vertical */
+  height: 100vh; 
 }
 
 .login-container {
   width: 100%;
-  max-width: 30rem; /* Reducido el ancho máximo para un diseño más centrado */
+  max-width: 30rem; 
   height: 24rem;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   color: #fff;
   font-family: 'Poppins';
-  text-align: center; /* Centrado de contenido */
+  text-align: center; 
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
   background-color: #000000;
   opacity: 0.6;
@@ -84,7 +84,7 @@ export default {
 
 h2 {
   margin-bottom: 1rem;
-  margin-top: 20px; /* Alineado el título */
+  margin-top: 20px; 
   letter-spacing: 3px;
   font-weight: bold;
 }
@@ -101,7 +101,7 @@ h2 {
 }
 
 .form-group-login {
-  margin-top: 20px; /* Alineado el botón */
+  margin-top: 20px; 
 }
 
 label {

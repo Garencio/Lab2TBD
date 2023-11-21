@@ -29,14 +29,14 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh; /* Ocupa todo el alto de la ventana */
+  height: 100vh; 
   margin: 0;
   padding: 0;
 
 }
 
 .login-container {
-  text-align: center; /* Centra el texto de los elementos hijos */
+  text-align: center; 
   padding: 4%;
   
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
@@ -46,27 +46,27 @@ export default {
 
 .login-buttons {
   display: flex;
-  flex-direction: column; /* Apila los botones verticalmente */
-  align-items: center; /* Centra los botones horizontalmente */
-  gap: 1rem; /* Espacio entre botones */
+  flex-direction: column; 
+  align-items: center; 
+  gap: 1rem; 
 }
 .login-button, .register-button, .back-button, .login-button {
-  min-width: 150px; /* Ajusta según tus necesidades */
-  padding: 10px 20px; /* Añade espacio alrededor del texto del botón */
+  min-width: 150px;
+  padding: 10px 20px; 
   border: none;
   border-radius: 5px;
-  background-color: #ffffff; /* Morado más claro */
+  background-color: #ffffff; 
   color: #000000;
   border: none;
   border-radius: 4px;
   font-size: 1rem;
-  padding: 10px 30px; /* Ajusta el espaciado del botón */
+  padding: 10px 30px; 
   cursor: pointer;
   transition: background-color 0.3s;
-  font-family: 'Poppins'; /* Aplicar la fuente Roboto Mono */
+  font-family: 'Poppins';
   margin: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease; /* Transición de color de fondo */
+  transition: background-color 0.3s ease; 
 }
 
 .login-button:hover, .register-button:hover, .back-button:hover {

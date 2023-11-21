@@ -103,7 +103,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh; /* Ocupa todo el alto de la ventana */
+  height: 100vh; 
 }
 
 .register-container {
@@ -114,17 +114,17 @@ export default {
   height: 45rem;
   padding: 3rem;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
-  background-color: #000000; /* Color de fondo morado oscuro */
-  color: #fff; /* Color del texto */
+  background-color: #000000; 
+  color: #fff; 
   font-family: 'Poppins';
-  text-align: center; /* Centra el texto de los elementos hijos */
+  text-align: center;
   opacity: 0.6;
 
 }
 
 h2 {
   margin: 20px 10px;
-  padding: 1rem; /* Ajusta el margen superior e inferior */
+  padding: 1rem;
   font-size: 1.7rem;
   font-weight: bold;
   color: white;
@@ -140,7 +140,7 @@ form {
 }
 
 .form-group {
-  margin-bottom: 1rem; /* Ajusta el margen inferior */
+  margin-bottom: 1rem; 
   letter-spacing: 3px;
 }
 
@@ -167,10 +167,10 @@ input:focus {
   border: none;
   border-radius: 4px;
   font-size: 1rem;
-  padding: 10px 50px; /* Ajusta el espaciado del botón */
+  padding: 10px 50px; 
   cursor: pointer;
   transition: background-color 0.3s;
-  font-family: 'Poppins'; /* Aplicar la fuente Roboto Mono */
+  font-family: 'Poppins'; 
 }
 
 .back-button:hover, .register-button:hover {

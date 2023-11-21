@@ -90,9 +90,9 @@ export default {
 
 .container {
   display: flex;
-  flex-direction: row; /* Apila los elementos verticalmente */
-  justify-content: center; /* Centra verticalmente */
-  align-items: center; /* Centra horizontalmente */
+  flex-direction: row; 
+  justify-content: center; 
+  align-items: center; 
   height: 100vh;}
 
 .column {

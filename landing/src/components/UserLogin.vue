@@ -67,7 +67,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh; /* Ocupa todo el alto de la ventana */
+  height: 100vh; 
 }
 
 .main-container {
@@ -77,17 +77,17 @@ export default {
   justify-content: center;
   width: 35rem;
   height: 30rem;
-  margin-top: 20px; /* Ajusta el margen superior */
-  background-color: #000000; /* Color de fondo morado oscuro */
+  margin-top: 20px; 
+  background-color: #000000; 
   opacity: 0.6;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  color: #fff; /* Color del texto */
+  color: #fff; 
   font-family: 'Poppins';
   letter-spacing: 4px;
 }
 
 h2 {
-  margin: 50px 0 20px; /* Ajusta el margen superior e inferior */
+  margin: 50px 0 20px; 
   text-align: center;
   font-weight: bold;
   color: white;
@@ -108,7 +108,7 @@ h2 {
 }
 
 .form-group-login {
-  margin-top: 20px; /* Ajusta el margen superior */
+  margin-top: 20px; 
 }
 
 label {
@@ -132,16 +132,16 @@ input:focus {
 
 
 .back-button, .login-button {
-  background-color: #ffffff; /* Morado más claro */
-  margin-top: 2rem; /* Ajusta el margen superior */
+  background-color: #ffffff; 
+  margin-top: 2rem; 
   color: #fff;
   color: #000000;
   border-radius: 4px;
   font-size: 1rem;
-  padding: 10px 50px; /* Ajusta el espaciado del botón */
+  padding: 10px 50px; 
   cursor: pointer;
   transition: background-color 0.3s;
-  font-family: 'Poppins', monospace; /* Aplicar la fuente Roboto Mono */
+  font-family: 'Poppins', monospace; 
 }
 
 .back-button:hover, .login-button:hover {
